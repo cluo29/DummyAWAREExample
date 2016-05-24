@@ -56,12 +56,6 @@ public class Plugin extends Aware_Plugin {
         };
         CONTEXT_PRODUCER = sContext;
 
-        createSimulatedData();
-
-
-
-
-
         //Add permissions you need (Support for Android M) e.g.,
         //REQUIRED_PERMISSIONS.add(Manifest.permission.WRITE_EXTERNAL_STORAGE);
 
@@ -78,19 +72,25 @@ public class Plugin extends Aware_Plugin {
 
 
     }
-
-    public void createSimulatedData() {
-
+    
+    public void createSimulatedData(long timestamp, String device_id, String package_name, String application_name,
+                                    long application_version, String error_short, String error_long,
+                                    int error_condition, int is_system_app) {
         ContentValues data = new ContentValues();
-        data.put(Dummy_AWARE_Data.TIMESTAMP, System.currentTimeMillis());
-        data.put(Dummy_AWARE_Data.DEVICE_ID, Aware.getSetting(getApplicationContext(), Aware_Preferences.DEVICE_ID));
-        //send to AWARE
+        data.put(Dummy_AWARE_Data.TIMESTAMP, timestamp);
+        data.put(Dummy_AWARE_Data.DEVICE_ID, device_id);
+        data.put(Dummy_AWARE_Data.PACKAGE_NAME, package_name);
+        data.put(Dummy_AWARE_Data.APPLICATION_NAME, application_name);
+        data.put(Dummy_AWARE_Data.APPLICATION_VERSION, application_version);
+        data.put(Dummy_AWARE_Data.ERROR_SHORT, error_short);
+        data.put(Dummy_AWARE_Data.ERROR_LONG, error_long);
+        data.put(Dummy_AWARE_Data.ERROR_CONDITION, error_condition);
+        data.put(Dummy_AWARE_Data.IS_SYSTEM_APP, is_system_app);
         Intent context_unlock = new Intent();
         context_unlock.setAction(ACTION_AWARE_PLUGIN_DUMMYAWARE);
         context_unlock.putExtra(EXTRA_DATA,data);
         sendBroadcast(context_unlock);
         getContentResolver().insert(Dummy_AWARE_Data.CONTENT_URI, data);
-
     }
 
 
