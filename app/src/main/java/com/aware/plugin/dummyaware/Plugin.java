@@ -63,8 +63,9 @@ public class Plugin extends Aware_Plugin {
 
     }
     
-    public void createApplicationsCrashes(long timestamp, String device_id, String package_name, String application_name,
-                                    long application_version, String error_short, String error_long,
+    public void createApplicationsCrashes(long timestamp, String device_id, String package_name, 
+                                    String application_name, long application_version, 
+                                    String error_short, String error_long,
                                     int error_condition, int is_system_app) {
         ContentValues data = new ContentValues();
         data.put(Dummy_AWARE_Data_Applications_Crashes.TIMESTAMP, timestamp);
@@ -80,8 +81,8 @@ public class Plugin extends Aware_Plugin {
         applications_crashes.setAction(ACTION_AWARE_PLUGIN_DUMMYAWARE);
         applications_crashes.putExtra(EXTRA_DATA,data);
         sendBroadcast(applications_crashes);
-        getContentResolver().insert(Dummy_AWARE_Data_Applications_Crashes.CONTENT_URI, data);
-    }
+        getContentResolver().insert(Dummy_AWARE_Data_Applications_Crashes.CONTENT_URI, data);}
+    
 
 
 
