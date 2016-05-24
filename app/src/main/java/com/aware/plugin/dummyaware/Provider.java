@@ -37,8 +37,8 @@ public class Provider extends ContentProvider {
             "plugin_dummyaware"
     };
 
-    public static final class Dummy_AWARE_Data implements BaseColumns {
-        private Dummy_AWARE_Data(){}
+    public static final class Dummy_AWARE_Data_Applications_Crashes implements BaseColumns {
+        private Dummy_AWARE_Data_Applications_Crashes(){}
 
         public static final Uri CONTENT_URI = Uri.parse("content://"+AUTHORITY+"/plugin_dummyaware");
         public static final String CONTENT_TYPE = "vnd.android.cursor.dir/vnd.aware.plugin.dummyaware";
@@ -57,17 +57,17 @@ public class Provider extends ContentProvider {
     }
 
     public static final String[] TABLES_FIELDS = {
-        Dummy_AWARE_Data._ID + " integer primary key autoincrement," +
-        Dummy_AWARE_Data.TIMESTAMP + " real default 0," +
-        Dummy_AWARE_Data.DEVICE_ID + " text default ''," +
-        Dummy_AWARE_Data.PACKAGE_NAME + " text default ''," +
-        Dummy_AWARE_Data.APPLICATION_NAME + " text default ''," +
-        Dummy_AWARE_Data.APPLICATION_VERSION + " real default 0," +
-        Dummy_AWARE_Data.ERROR_SHORT + " text default ''," +
-        Dummy_AWARE_Data.ERROR_LONG + " text default ''," +
-        Dummy_AWARE_Data.ERROR_CONDITION + " integer default 0," +
-        Dummy_AWARE_Data.IS_SYSTEM_APP + " integer default 0," +
-        "UNIQUE("+ Dummy_AWARE_Data.TIMESTAMP+","+ Dummy_AWARE_Data.DEVICE_ID+")"
+        Dummy_AWARE_Data_Applications_Crashes._ID + " integer primary key autoincrement," +
+        Dummy_AWARE_Data_Applications_Crashes.TIMESTAMP + " real default 0," +
+        Dummy_AWARE_Data_Applications_Crashes.DEVICE_ID + " text default ''," +
+        Dummy_AWARE_Data_Applications_Crashes.PACKAGE_NAME + " text default ''," +
+        Dummy_AWARE_Data_Applications_Crashes.APPLICATION_NAME + " text default ''," +
+        Dummy_AWARE_Data_Applications_Crashes.APPLICATION_VERSION + " real default 0," +
+        Dummy_AWARE_Data_Applications_Crashes.ERROR_SHORT + " text default ''," +
+        Dummy_AWARE_Data_Applications_Crashes.ERROR_LONG + " text default ''," +
+        Dummy_AWARE_Data_Applications_Crashes.ERROR_CONDITION + " integer default 0," +
+        Dummy_AWARE_Data_Applications_Crashes.IS_SYSTEM_APP + " integer default 0," +
+        "UNIQUE("+ Dummy_AWARE_Data_Applications_Crashes.TIMESTAMP+","+ Dummy_AWARE_Data_Applications_Crashes.DEVICE_ID+")"
     };
 
     private static UriMatcher URIMatcher;
@@ -83,16 +83,16 @@ public class Provider extends ContentProvider {
         URIMatcher.addURI(AUTHORITY, DATABASE_TABLES[0] + "/#", DUMMYAWARE_ID);
 
         databaseMap = new HashMap<>();
-        databaseMap.put(Dummy_AWARE_Data._ID, Dummy_AWARE_Data._ID);
-        databaseMap.put(Dummy_AWARE_Data.TIMESTAMP, Dummy_AWARE_Data.TIMESTAMP);
-        databaseMap.put(Dummy_AWARE_Data.DEVICE_ID, Dummy_AWARE_Data.DEVICE_ID);
-        databaseMap.put(Dummy_AWARE_Data.PACKAGE_NAME, Dummy_AWARE_Data.PACKAGE_NAME);
-        databaseMap.put(Dummy_AWARE_Data.APPLICATION_NAME, Dummy_AWARE_Data.APPLICATION_NAME);
-        databaseMap.put(Dummy_AWARE_Data.APPLICATION_VERSION, Dummy_AWARE_Data.APPLICATION_VERSION);
-        databaseMap.put(Dummy_AWARE_Data.ERROR_SHORT, Dummy_AWARE_Data.ERROR_SHORT);
-        databaseMap.put(Dummy_AWARE_Data.ERROR_LONG, Dummy_AWARE_Data.ERROR_LONG);
-        databaseMap.put(Dummy_AWARE_Data.ERROR_CONDITION, Dummy_AWARE_Data.ERROR_CONDITION);
-        databaseMap.put(Dummy_AWARE_Data.IS_SYSTEM_APP, Dummy_AWARE_Data.IS_SYSTEM_APP);
+        databaseMap.put(Dummy_AWARE_Data_Applications_Crashes._ID, Dummy_AWARE_Data_Applications_Crashes._ID);
+        databaseMap.put(Dummy_AWARE_Data_Applications_Crashes.TIMESTAMP, Dummy_AWARE_Data_Applications_Crashes.TIMESTAMP);
+        databaseMap.put(Dummy_AWARE_Data_Applications_Crashes.DEVICE_ID, Dummy_AWARE_Data_Applications_Crashes.DEVICE_ID);
+        databaseMap.put(Dummy_AWARE_Data_Applications_Crashes.PACKAGE_NAME, Dummy_AWARE_Data_Applications_Crashes.PACKAGE_NAME);
+        databaseMap.put(Dummy_AWARE_Data_Applications_Crashes.APPLICATION_NAME, Dummy_AWARE_Data_Applications_Crashes.APPLICATION_NAME);
+        databaseMap.put(Dummy_AWARE_Data_Applications_Crashes.APPLICATION_VERSION, Dummy_AWARE_Data_Applications_Crashes.APPLICATION_VERSION);
+        databaseMap.put(Dummy_AWARE_Data_Applications_Crashes.ERROR_SHORT, Dummy_AWARE_Data_Applications_Crashes.ERROR_SHORT);
+        databaseMap.put(Dummy_AWARE_Data_Applications_Crashes.ERROR_LONG, Dummy_AWARE_Data_Applications_Crashes.ERROR_LONG);
+        databaseMap.put(Dummy_AWARE_Data_Applications_Crashes.ERROR_CONDITION, Dummy_AWARE_Data_Applications_Crashes.ERROR_CONDITION);
+        databaseMap.put(Dummy_AWARE_Data_Applications_Crashes.IS_SYSTEM_APP, Dummy_AWARE_Data_Applications_Crashes.IS_SYSTEM_APP);
 
         return true;
     }
@@ -132,9 +132,9 @@ public class Provider extends ContentProvider {
     public String getType(Uri uri) {
         switch (URIMatcher.match(uri)) {
             case DUMMYAWARE:
-                return Dummy_AWARE_Data.CONTENT_TYPE;
+                return Dummy_AWARE_Data_Applications_Crashes.CONTENT_TYPE;
             case DUMMYAWARE_ID:
-                return Dummy_AWARE_Data.CONTENT_ITEM_TYPE;
+                return Dummy_AWARE_Data_Applications_Crashes.CONTENT_ITEM_TYPE;
             default:
                 throw new IllegalArgumentException("Unknown URI " + uri);
         }
@@ -152,11 +152,11 @@ public class Provider extends ContentProvider {
 
         switch (URIMatcher.match(uri)) {
             case DUMMYAWARE:
-                long weather_id = database.insert(DATABASE_TABLES[0], Dummy_AWARE_Data.DEVICE_ID, values);
+                long weather_id = database.insert(DATABASE_TABLES[0], Dummy_AWARE_Data_Applications_Crashes.DEVICE_ID, values);
 
                 if (weather_id > 0) {
                     Uri new_uri = ContentUris.withAppendedId(
-                            Dummy_AWARE_Data.CONTENT_URI,
+                            Dummy_AWARE_Data_Applications_Crashes.CONTENT_URI,
                             weather_id);
                     getContext().getContentResolver().notifyChange(new_uri,
                             null);
