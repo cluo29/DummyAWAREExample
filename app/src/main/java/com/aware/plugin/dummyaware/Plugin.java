@@ -63,7 +63,7 @@ public class Plugin extends Aware_Plugin {
 
     }
     
-    public void create_Applications_Crashes(long timestamp, String device_id, String package_name, String application_name,
+    public void createApplicationsCrashes(long timestamp, String device_id, String package_name, String application_name,
                                     long application_version, String error_short, String error_long,
                                     int error_condition, int is_system_app) {
         ContentValues data = new ContentValues();
